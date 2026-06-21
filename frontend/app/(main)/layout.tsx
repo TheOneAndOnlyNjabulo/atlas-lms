@@ -11,9 +11,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   }, [router])
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex h-screen overflow-hidden">
       <Sidebar />
-      <div className="flex-1 min-w-0 overflow-y-auto">
+      <div className="flex-1 min-w-0 overflow-y-auto bg-[#f4f5f7]">
         {children}
       </div>
     </div>
