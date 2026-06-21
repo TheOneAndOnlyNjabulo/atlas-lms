@@ -13,7 +13,11 @@ public static class DbSeeder
         var context = services.GetRequiredService<ApplicationDbContext>();
         var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
 
-        await context.Database.MigrateAsync();
+        // SQLite: use EnsureCreated (no migrations). SQL Server: use Migrate.
+        if (context.Database.IsSqlite())
+            await context.Database.EnsureCreatedAsync();
+        else
+            await context.Database.MigrateAsync();
 
         if (await userManager.Users.AnyAsync()) return;
 

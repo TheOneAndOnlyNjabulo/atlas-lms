@@ -42,13 +42,20 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
+var allowedOrigins = builder.Configuration
+    .GetSection("AllowedOrigins").Get<string[]>()
+    ?.Where(o => !o.StartsWith("${"))   // strip unresolved placeholders
+    .ToArray() ?? ["http://localhost:3000"];
+
+// Also pick up FRONTEND_URL env var directly (set in Azure App Settings)
+var frontendUrl = builder.Configuration["FRONTEND_URL"];
+if (!string.IsNullOrEmpty(frontendUrl))
+    allowedOrigins = [.. allowedOrigins, frontendUrl];
+
 builder.Services.AddCors(opt =>
 {
     opt.AddPolicy("CorsPolicy", policy =>
-    {
-        policy.AllowAnyHeader().AllowAnyMethod()
-            .WithOrigins(builder.Configuration.GetSection("AllowedOrigins").Get<string[]>() ?? ["http://localhost:3000"]);
-    });
+        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins(allowedOrigins));
 });
 
 builder.Services.AddOpenApi();
