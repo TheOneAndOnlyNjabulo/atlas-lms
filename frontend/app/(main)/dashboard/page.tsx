@@ -44,7 +44,7 @@ export default function DashboardPage() {
   ]
 
   return (
-    <div className="p-8 space-y-8 max-w-5xl">
+    <div className="p-8 space-y-8 max-w-6xl">
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
@@ -61,7 +61,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {stats.map((s) => (
           <div key={s.label} className="bg-white rounded-xl border border-gray-200 p-5 flex items-center gap-4 shadow-sm">
             <div className={cn('rounded-xl p-3', s.bg)}>
@@ -87,7 +87,7 @@ export default function DashboardPage() {
         </div>
 
         {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
             {[1, 2, 3, 4].map(i => (
               <div key={i} className="h-28 rounded-xl bg-gray-100 animate-pulse" />
             ))}
@@ -101,7 +101,7 @@ export default function DashboardPage() {
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
             {courses.map((course, i) => (
               <Link key={course.id} href={`/courses/${course.id}`}>
                 <div className={cn(

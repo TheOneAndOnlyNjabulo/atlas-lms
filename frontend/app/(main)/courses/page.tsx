@@ -36,7 +36,7 @@ export default function CoursesPage() {
   )
 
   return (
-    <div className="p-8 space-y-6 max-w-5xl">
+    <div className="p-8 space-y-6 max-w-6xl">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -58,7 +58,7 @@ export default function CoursesPage() {
 
       {/* Grid */}
       {isLoading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {[1, 2, 3, 4, 5, 6].map(i => <div key={i} className="h-44 rounded-xl bg-gray-100 animate-pulse" />)}
         </div>
       ) : filtered.length === 0 ? (
@@ -68,7 +68,7 @@ export default function CoursesPage() {
           <p className="text-sm mt-1">Try a different search term</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {filtered.map((course, i) => {
             const accent = accentColors[i % accentColors.length]
             return (
