@@ -1,0 +1,26 @@
+# ── .NET ──────────────────────────────────────────────
+bin/
+obj/
+*.user
+.vs/
+*.suo
+*.userprefs
+*.DotSettings.user
+TestResults/
+
+# Secrets — use environment variables in production
+src/**/appsettings.Development.json
+src/**/appsettings.*.json
+!src/**/appsettings.json
+
+# ── Next.js ───────────────────────────────────────────
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env.local
+frontend/.env.*.local
+
+# ── General ───────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.log
